@@ -90,7 +90,7 @@ public class H_LoginActivity extends AppCompatActivity {
 
     }
 
-    private void loginUser(String email, String pass) {
+    private void loginUser(final String email, String pass) {
         mAuth.signInWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -102,6 +102,9 @@ public class H_LoginActivity extends AppCompatActivity {
                             LoginProgress.dismiss();
                             Intent i = new Intent(H_LoginActivity.this, H_home_activity.class);
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+
+                            i.putExtra("id",email.toString().replace("@","").toString().replace(".",""));
                             startActivity(i);
                             finish();
                             FirebaseUser user = mAuth.getCurrentUser();

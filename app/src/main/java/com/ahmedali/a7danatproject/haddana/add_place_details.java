@@ -81,13 +81,14 @@ public class add_place_details extends AppCompatActivity {
 
                     post.setAdmin_name("q");
                     post.setAdmin_img("q");
-                    post.setAdmin_mail("q");
+                    post.setAdmin_mail(getIntent().getStringExtra("id"));
                     post.setName(place_name.getText().toString());
                     post.setPhone(place_phone.getText().toString());
                     post.setDetails(place_details.getText().toString());
                     post.setPrice(place_price.getText().toString());
                     post.setCount(Count.getText().toString());
                     post.setAdresse(address.getText().toString());
+                    post.setEnable("true");
 
 
                     if ((!post.getAdmin_img().isEmpty()) &&
@@ -166,7 +167,8 @@ public class add_place_details extends AppCompatActivity {
 
                                                                         // Write a message to the database
                                                                         FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                                                        DatabaseReference myRef = database.getReference("adminposts").push();
+                                                                        DatabaseReference myRef = database.getReference("adminposts")
+                                                                                .child(getIntent().getStringExtra("id")).push();
 
                                                                         myRef.setValue(post).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                             @Override

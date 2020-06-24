@@ -6,7 +6,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
@@ -36,6 +35,7 @@ class H_home_activity : AppCompatActivity() {
         findViewById<View>(R.id.floatingActionButton).setOnClickListener {
             val intent = Intent(applicationContext, add_place_details::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.putExtra("id",getIntent().getStringExtra("id"))
             startActivity(intent)
 
 
@@ -44,6 +44,7 @@ class H_home_activity : AppCompatActivity() {
 
         firebaseDatabase = FirebaseDatabase.getInstance()
         online_user = firebaseDatabase!!.getReference("adminposts")
+                .child(getIntent().getStringExtra("id"))
         LoadOnlineUsers()
 
     }
@@ -65,13 +66,15 @@ class H_home_activity : AppCompatActivity() {
                         config,
                         SnapshotParser { snapshot -> snapshot.getValue(admin_post_mode::class.java)!! })
                 .setQuery(online_user, config, admin_post_mode::class.java)
+
                 .build()
         online_user.keepSynced(true)
         mPaginationAdapter =
-                PaginationAdapter(
+                PaginationAdapter(this@H_home_activity,
                         options,
                         this
                 )
+
         recyclerView.layoutManager = GridLayoutManager(this,1)
         recyclerView.setAdapter(mPaginationAdapter)
 

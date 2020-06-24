@@ -1,6 +1,9 @@
 package com.ahmedali.a7danatproject.haddana.model;
 
-public class admin_post_mode {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class admin_post_mode implements Parcelable {
     private String  admin_name ;
     private String  admin_img  ;
     private String  admin_mail ;
@@ -13,6 +16,38 @@ public class admin_post_mode {
     private String img1        ;
     private String img2        ;
     private String img3        ;
+    private String enable ;
+
+    public admin_post_mode() {
+    }
+
+    protected admin_post_mode(Parcel in) {
+        admin_name = in.readString();
+        admin_img = in.readString();
+        admin_mail = in.readString();
+        name = in.readString();
+        phone = in.readString();
+        details = in.readString();
+        price = in.readString();
+        count = in.readString();
+        adresse = in.readString();
+        img1 = in.readString();
+        img2 = in.readString();
+        img3 = in.readString();
+        enable=in.readString();
+    }
+
+    public static final Creator<admin_post_mode> CREATOR = new Creator<admin_post_mode>() {
+        @Override
+        public admin_post_mode createFromParcel(Parcel in) {
+            return new admin_post_mode(in);
+        }
+
+        @Override
+        public admin_post_mode[] newArray(int size) {
+            return new admin_post_mode[size];
+        }
+    };
 
     public String getAdmin_name() {
         return admin_name;
@@ -94,6 +129,14 @@ public class admin_post_mode {
         this.img1 = img1;
     }
 
+    public String getEnable() {
+        return enable;
+    }
+
+    public void setEnable(String enable) {
+        this.enable = enable;
+    }
+
     public String getImg2() {
         return img2;
     }
@@ -108,5 +151,27 @@ public class admin_post_mode {
 
     public void setImg3(String img3) {
         this.img3 = img3;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(admin_name);
+        dest.writeString(admin_img);
+        dest.writeString(admin_mail);
+        dest.writeString(name);
+        dest.writeString(phone);
+        dest.writeString(details);
+        dest.writeString(price);
+        dest.writeString(count);
+        dest.writeString(adresse);
+        dest.writeString(img1);
+        dest.writeString(img2);
+        dest.writeString(img3);
+        dest.writeString(enable);
     }
 }
