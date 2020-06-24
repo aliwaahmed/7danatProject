@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "778897429307",
+    "firebase_url": "https://danatproject.firebaseio.com",
+    "project_id": "danatproject",
+    "storage_bucket": "danatproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778897429307:android:8ec0284612f57ab4cf5d1e",
+        "android_client_info": {
+          "package_name": "com.logapps.a7danatproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778897429307-rqf6uhthu7705niackgqk2ju085ji3m7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBN4Utajm9qqXaNQvYgReK1wkedvgU8B7o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778897429307-rqf6uhthu7705niackgqk2ju085ji3m7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
