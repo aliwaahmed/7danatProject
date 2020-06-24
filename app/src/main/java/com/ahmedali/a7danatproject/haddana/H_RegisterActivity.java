@@ -122,7 +122,9 @@ public class H_RegisterActivity extends AppCompatActivity {
                             FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
                             String uid = current_user.getUid();
 
-                            mDatabase = FirebaseDatabase.getInstance().getReference().child("h_Users").child(uid);
+                            mDatabase = FirebaseDatabase.getInstance().getReference().child("h_Users")
+                                    .child(String.valueOf(email.replace("@",""))
+                                            .replace(".",""));
 
                             //adding data to firebase database (Realtime-database)
                             HashMap<String , String> userMap = new HashMap<>();
@@ -144,6 +146,8 @@ public class H_RegisterActivity extends AppCompatActivity {
                             Log.d("TESTING", "Created Account");
                             mProgress.hide();
                             Intent i = new Intent(H_RegisterActivity.this , H_home_activity.class);
+
+                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(i);
                         }
                     }

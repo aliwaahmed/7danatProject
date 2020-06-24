@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.ahmedali.a7danatproject">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".normal_user.U_HomeActivity"></activity>
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme"
+        tools:replace="android:supportsRtl">
+        <activity android:name=".haddana.MainActivity"></activity>
+        <activity android:name=".haddana.add_place_details" />
+        <activity android:name=".normal_user.U_HomeActivity" />
         <activity android:name=".normal_user.U_RegisterActivity" />
         <activity android:name=".normal_user.U_LoginActivity" />
         <activity android:name=".haddana.H_home_activity" />
