@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -104,6 +105,11 @@ public class H_LoginActivity extends AppCompatActivity {
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
 
+                            // MY_PREFS_NAME - a static String variable like:
+//public static final String MY_PREFS_NAME = "MyPrefsFile";
+                            SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
+                            editor.putString("id", email.toString().replace("@","").toString().replace(".",""));
+                            editor.apply();
                             i.putExtra("id",email.toString().replace("@","").toString().replace(".",""));
                             startActivity(i);
                             finish();
