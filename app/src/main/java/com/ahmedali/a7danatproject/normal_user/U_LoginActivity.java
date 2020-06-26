@@ -105,7 +105,7 @@ public class U_LoginActivity extends AppCompatActivity {
                             Toast.makeText(U_LoginActivity.this, "success",
                                     Toast.LENGTH_SHORT).show();
                             LoginProgress.dismiss();
-                            Intent i = new Intent(U_LoginActivity.this, H_home_activity.class);
+                            Intent i = new Intent(U_LoginActivity.this, U_HomeActivity.class);
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(i);
                             finish();

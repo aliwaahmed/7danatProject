@@ -12,7 +12,8 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
-        <activity android:name=".haddana.ShowDetails.ShowDetails"></activity>
+        <activity android:name=".normal_user.u_details"></activity>
+        <activity android:name=".haddana.ShowDetails.ShowDetails" />
         <activity android:name=".haddana.MainActivity" />
         <activity android:name=".haddana.add_place_details" />
         <activity android:name=".normal_user.U_HomeActivity" />

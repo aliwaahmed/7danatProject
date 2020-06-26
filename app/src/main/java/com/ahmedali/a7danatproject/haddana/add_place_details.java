@@ -168,7 +168,7 @@ public class add_place_details extends AppCompatActivity {
                                                                         // Write a message to the database
                                                                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                                                                         DatabaseReference myRef = database.getReference("adminposts")
-                                                                                .child(getIntent().getStringExtra("id")).push();
+                                                                                .push();
 
                                                                         myRef.setValue(post).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                             @Override
