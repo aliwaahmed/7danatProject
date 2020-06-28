@@ -21,29 +21,40 @@ class PaginationAdapter(var activity: H_home_activity, var options: DatabasePagi
                         private val context: Context) : FirebaseRecyclerPagingAdapter<admin_post_mode, mViewholder>(options) {
     override fun onBindViewHolder(holder: mViewholder, i: Int, userData: admin_post_mode) {
 
+        val prefs = context.getSharedPreferences("login", Context.MODE_PRIVATE)
+        val name = prefs.getString("id", "No name defined") //"No name defined" is the default value.
 
-        Glide.with(context).load(userData.img1).into(holder.itemView.imageView8);
-        holder.itemView.textView3.setText(userData.details)
-        holder.itemView.textView4.setText(userData.adresse)
+        if(userData.admin_mail.equals(name))
+{
 
-
-
-
-        holder.itemView.card.setOnClickListener(View.OnClickListener {
-
-            options!!.data.observe(activity, androidx.lifecycle.Observer {
-
-                Log.e("idali", it.get(i)!!.ref.key.toString())
-
-                val intent = Intent(context, ShowDetails::class.java);
-                intent.putExtra("iteam", userData)
-                intent.putExtra("post_id", it.get(i)!!.ref.key.toString())
-                context.startActivity(intent)
+    Glide.with(context).load(userData.img1).into(holder.itemView.imageView8);
+    holder.itemView.textView3.setText(userData.details)
+    holder.itemView.textView4.setText(userData.adresse)
 
 
-            })
+
+
+    holder.itemView.card.setOnClickListener(View.OnClickListener {
+
+        options!!.data.observe(activity, androidx.lifecycle.Observer {
+
+            Log.e("idali", it.get(i)!!.ref.key.toString())
+
+            val intent = Intent(context, ShowDetails::class.java);
+            intent.putExtra("iteam", userData)
+            intent.putExtra("post_id", it.get(i)!!.ref.key.toString())
+            context.startActivity(intent)
+
 
         })
+
+    })
+}
+        else
+{
+    holder.itemView.card.visibility=View.GONE
+}
+
 
 
     }
