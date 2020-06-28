@@ -51,7 +51,6 @@ class ShowDetails : AppCompatActivity() {
                 else
                 {
                     toggleButton.isChecked = true
-
                 }
 
                 toggleButton.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
