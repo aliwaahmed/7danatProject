@@ -88,18 +88,15 @@ class H_home_activity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id: Int = item.getItemId()
         return when (id) {
-            R.id.item1 -> {
-                Toast.makeText(applicationContext, "Item 1 Selected", Toast.LENGTH_LONG).show()
+            R.id.profile -> {
+                Toast.makeText(applicationContext, "profile", Toast.LENGTH_LONG).show()
                 true
             }
-            R.id.item2 -> {
-                Toast.makeText(applicationContext, "Item 2 Selected", Toast.LENGTH_LONG).show()
+            R.id.logout -> {
+                Toast.makeText(applicationContext, "logout", Toast.LENGTH_LONG).show()
                 true
             }
-            R.id.item3 -> {
-                Toast.makeText(applicationContext, "Item 3 Selected", Toast.LENGTH_LONG).show()
-                true
-            }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

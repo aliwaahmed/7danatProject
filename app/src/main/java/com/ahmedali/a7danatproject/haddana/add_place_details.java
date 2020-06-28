@@ -267,7 +267,6 @@ public class add_place_details extends AppCompatActivity {
 
                 }
 
-
             }
         });
 
