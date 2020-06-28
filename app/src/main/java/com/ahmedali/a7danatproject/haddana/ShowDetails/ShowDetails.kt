@@ -31,7 +31,7 @@ class ShowDetails : AppCompatActivity() {
 
 
 
-        val myRef1= myRef.child(name.toString()).child(intent.getStringExtra("post_id"))
+        val myRef1= myRef.child(intent.getStringExtra("post_id"))
 
         // Read from the database
         myRef1.addValueEventListener(object : ValueEventListener {

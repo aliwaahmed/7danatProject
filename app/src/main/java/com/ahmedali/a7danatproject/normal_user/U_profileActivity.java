@@ -219,6 +219,9 @@ public class U_profileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                try {
+
+
                 String name = dataSnapshot.child("h_name").getValue().toString();
                 String phone = dataSnapshot.child("h_phone").getValue().toString();
                 String Iaddress = dataSnapshot.child("h_address").getValue().toString();
@@ -244,6 +247,10 @@ public class U_profileActivity extends AppCompatActivity {
                             Picasso.with(U_profileActivity.this).load(image).placeholder(R.drawable.ic_launcher_background).into(mDisplayImage);
                         }
                     });
+                }
+                }catch (Exception e)
+                {
+
                 }
             }
 

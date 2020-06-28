@@ -20,19 +20,18 @@
         tools:replace="android:supportsRtl">
         <activity android:name=".haddana.H_profileActivity"></activity>
         <activity android:name=".normal_user.U_profileActivity" />
-        <activity android:name=".haddana.user.U_loginActivity" />
+        <activity android:name=".normal_user.U_HomeActivity"/>
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name=".haddana.ShowDetails.ShowDetails" />
-        <activity android:name=".haddana.MainActivity" />
         <activity android:name=".haddana.add_place_details" />
-        <activity android:name=".normal_user.U_HomeActivity" />
         <activity android:name=".normal_user.U_RegisterActivity" />
         <activity android:name=".normal_user.U_LoginActivity" />
         <activity android:name=".haddana.H_home_activity" />
         <activity android:name=".haddana.H_RegisterActivity" />
         <activity android:name=".haddana.H_LoginActivity" />
+        <activity android:name=".normal_user.u_details"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

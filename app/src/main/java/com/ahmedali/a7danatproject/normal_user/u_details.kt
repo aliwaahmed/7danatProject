@@ -20,7 +20,7 @@ class u_details : AppCompatActivity() {
         sliderView.autoCycleDirection = SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH
         sliderView.indicatorSelectedColor = Color.WHITE
         sliderView.indicatorUnselectedColor = Color.GRAY
-        sliderView.scrollTimeInSec = 4 //set scroll delay in seconds :
+        sliderView.scrollTimeInSec = 1 //set scroll delay in seconds :
         sliderView.startAutoCycle()
         val post_mode: admin_post_mode = intent.getParcelableExtra("iteam")
         adapter.addItem(post_mode.img1)
