@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.ahmedali.a7danatproject.R
 import com.ahmedali.a7danatproject.haddana.adapter.PaginationAdapter
 import com.ahmedali.a7danatproject.haddana.model.admin_post_mode
+import com.ahmedali.a7danatproject.normal_user.U_profileActivity
 import com.firebase.ui.database.SnapshotParser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -89,7 +90,9 @@ class H_home_activity : AppCompatActivity() {
         val id: Int = item.getItemId()
         return when (id) {
             R.id.profile -> {
-                Toast.makeText(applicationContext, "profile", Toast.LENGTH_LONG).show()
+                val i = Intent(this, U_profileActivity::class.java)
+                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(i)
                 true
             }
             R.id.logout -> {

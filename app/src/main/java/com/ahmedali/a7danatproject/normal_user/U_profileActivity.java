@@ -213,15 +213,15 @@ public class U_profileActivity extends AppCompatActivity {
 
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
         String current_uid = mCurrentUser.getUid();
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("u_Users").child(current_uid);
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("h_Users").child(current_uid);
 
         mUserDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                String name = dataSnapshot.child("u_name").getValue().toString();
-                String phone = dataSnapshot.child("u_phone").getValue().toString();
-                String Iaddress = dataSnapshot.child("u_address").getValue().toString();
+                String name = dataSnapshot.child("h_name").getValue().toString();
+                String phone = dataSnapshot.child("h_phone").getValue().toString();
+                String Iaddress = dataSnapshot.child("h_address").getValue().toString();
                 final String image = dataSnapshot.child("image").getValue().toString();
                 String thumb_image = dataSnapshot.child("thumb_image").getValue().toString();
 
