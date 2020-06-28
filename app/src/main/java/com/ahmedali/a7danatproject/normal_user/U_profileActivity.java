@@ -8,6 +8,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -199,11 +200,11 @@ public class U_profileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent galleryIntent = new Intent();
-                galleryIntent.setType("image/*");
-                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-
-                startActivityForResult(Intent.createChooser(galleryIntent, "SELECT IMAGE"), GALLERY_PICK);
+//                Intent galleryIntent = new Intent();
+//                galleryIntent.setType("image/*");
+//                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+//
+//                startActivityForResult(Intent.createChooser(galleryIntent, "SELECT IMAGE"), GALLERY_PICK);
 
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
@@ -213,19 +214,20 @@ public class U_profileActivity extends AppCompatActivity {
 
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
         String current_uid = mCurrentUser.getUid();
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("h_Users").child(current_uid);
+        SharedPreferences  sharedPreferences =getSharedPreferences("login",MODE_PRIVATE);
+        String name = sharedPreferences.getString("id", "No name defined") ;//"No name defined" is the default value.
+
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("h_Users").child(name);
 
         mUserDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                try {
-
 
                 String name = dataSnapshot.child("h_name").getValue().toString();
                 String phone = dataSnapshot.child("h_phone").getValue().toString();
                 String Iaddress = dataSnapshot.child("h_address").getValue().toString();
-                final String image = dataSnapshot.child("image").getValue().toString();
+               final String image = dataSnapshot.child("image").getValue().toString();
                 String thumb_image = dataSnapshot.child("thumb_image").getValue().toString();
 
                 mName.setText(name);
@@ -233,7 +235,7 @@ public class U_profileActivity extends AppCompatActivity {
                 address.setText(Iaddress);
 
                 //
-                if (!image.equals("default")) {
+                if (!image.equals("")) {
                     Picasso.with(U_profileActivity.this).load(image).networkPolicy(NetworkPolicy.OFFLINE)
                             .placeholder(R.drawable.ic_launcher_background).into(mDisplayImage, new Callback() {
                         @Override
@@ -248,10 +250,7 @@ public class U_profileActivity extends AppCompatActivity {
                         }
                     });
                 }
-                }catch (Exception e)
-                {
 
-                }
             }
 
             @Override
@@ -292,10 +291,7 @@ public class U_profileActivity extends AppCompatActivity {
                 String current_user_id = mCurrentUser.getUid();
                 Uri imageUri = data.getData();
 
-                CropImage.activity(imageUri)
-                        .setAspectRatio(1, 1)
-                        .setMinCropWindowSize(500, 500)
-                        .start(this);
+
                 // uploading photo to page all users
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 //  imageUri.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -333,9 +329,7 @@ public class U_profileActivity extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 mProgressDilog.dismiss();
                                                 if (task.isSuccessful()) {
-                                                    Intent selfIntent = new Intent(U_profileActivity.this, U_profileActivity.class);
-                                                    startActivity(selfIntent);
-                                                    Toast.makeText(U_profileActivity.this, "Profile image stored to firebase database successfully.", Toast.LENGTH_SHORT).show();
+                                                recreate();
                                                 } else {
                                                     String message = task.getException().getMessage();
                                                     Toast.makeText(U_profileActivity.this, "Error Occured..." + message, Toast.LENGTH_SHORT).show();
