@@ -1,8 +1,8 @@
 package com.ahmedali.a7danatproject.normal_user
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.ahmedali.a7danatproject.R
 import com.ahmedali.a7danatproject.haddana.model.admin_post_mode
 import com.firebase.ui.database.SnapshotParser
-import com.google.firebase.database.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.shreyaspatil.firebase.recyclerpagination.DatabasePagingOptions
 import kotlinx.android.synthetic.main.activity_h_home_activity.*
 
@@ -105,7 +106,13 @@ class U_HomeActivity : AppCompatActivity() {
                 true
             }
             R.id.logout -> {
+                val editor = getSharedPreferences("login", Context.MODE_PRIVATE).edit()
+                editor.putString("id", "-1")
+                editor.putString("id_type", "-1")
+
+                editor.apply()
                 Toast.makeText(applicationContext, "logout", Toast.LENGTH_LONG).show()
+                finish()
                 true
             }
 

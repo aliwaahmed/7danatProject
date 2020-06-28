@@ -1,5 +1,6 @@
 package com.ahmedali.a7danatproject.haddana
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -96,7 +97,16 @@ class H_home_activity : AppCompatActivity() {
                 true
             }
             R.id.logout -> {
+                val editor = getSharedPreferences("login", Context.MODE_PRIVATE).edit()
+                editor.putString("id", "-1")
+                editor.putString("id_type", "-1")
+
+                editor.apply()
                 Toast.makeText(applicationContext, "logout", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "logout", Toast.LENGTH_LONG).show()
+
+                finish()
+
                 true
             }
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -22,6 +23,26 @@ public class MainActivity extends AppCompatActivity {
         user = findViewById(R.id._user);
         inc = findViewById(R.id._hospital);
 
+        SharedPreferences sharedPreferences =getSharedPreferences("login",MODE_PRIVATE);
+        String name = sharedPreferences.getString("id_type", "-") ;//"No name defined" is the default value.
+
+        if(name.equals("admin"))
+        {
+            user.setVisibility(View.INVISIBLE);
+            inc.setVisibility(View.VISIBLE);
+        }
+        else if(name.equals("user"))
+        {
+            inc.setVisibility(View.INVISIBLE);
+
+            user.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            inc.setVisibility(View.VISIBLE);
+
+            user.setVisibility(View.VISIBLE);
+        }
         user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

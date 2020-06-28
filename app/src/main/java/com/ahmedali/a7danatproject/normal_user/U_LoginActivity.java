@@ -41,6 +41,16 @@ public class U_LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences  sharedPreferences =getSharedPreferences("login",MODE_PRIVATE);
+        String name = sharedPreferences.getString("id", "-1") ;//"No name defined" is the default value.
+
+        if(!name.equals("-1"))
+        {
+            Intent i = new Intent(U_LoginActivity.this, U_HomeActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            i.putExtra("id",name.toString().replace("@","").toString().replace(".",""));
+            startActivity(i);
+        }
         setContentView(R.layout.activity_u__login);
 
         newAccount = findViewById(R.id.new_account);
@@ -110,6 +120,10 @@ public class U_LoginActivity extends AppCompatActivity {
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
                             editor.putString("id", email.toString().replace("@","").toString().replace(".",""));
+
+
+                            editor.putString("id_type", "user");
+
                             editor.apply();
                             i.putExtra("id",email.toString().replace("@","").toString().replace(".",""));
                             startActivity(i);

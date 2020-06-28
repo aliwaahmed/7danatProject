@@ -7,6 +7,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ahmedali.a7danatproject.MainActivity;
 import com.ahmedali.a7danatproject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -82,6 +84,23 @@ public class U_profileActivity extends AppCompatActivity {
         address = findViewById(R.id.info_address);
         change_image = findViewById(R.id.changeImage);
         editinfo = findViewById(R.id.editinfo);
+
+        findViewById(R.id.logout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SharedPreferences.Editor editor = getApplicationContext()
+                        .getSharedPreferences("login", Context.MODE_PRIVATE).edit();
+                editor.putString("id", "-1");
+                editor.putString("id_type", "-1");
+
+                editor.apply();
+
+                Intent intent =new Intent(getApplicationContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
 
 
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();

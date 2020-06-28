@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.ahmedali.a7danatproject.MainActivity;
 import com.ahmedali.a7danatproject.R;
+import com.ahmedali.a7danatproject.normal_user.U_HomeActivity;
+import com.ahmedali.a7danatproject.normal_user.U_LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -36,6 +38,16 @@ public class H_LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences  sharedPreferences =getSharedPreferences("login",MODE_PRIVATE);
+        String name = sharedPreferences.getString("id", "-1") ;//"No name defined" is the default value.
+
+        if(!name.equals("-1"))
+        {
+            Intent i = new Intent(this, H_home_activity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            i.putExtra("id",name.toString().replace("@","").toString().replace(".",""));
+            startActivity(i);
+        }
         setContentView(R.layout.activity_h__login);
 
         newAccount = findViewById(R.id.new_account);
@@ -109,6 +121,9 @@ public class H_LoginActivity extends AppCompatActivity {
 //public static final String MY_PREFS_NAME = "MyPrefsFile";
                             SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
                             editor.putString("id", email.toString().replace("@","").toString().replace(".",""));
+
+                            editor.putString("id_type", "admin");
+
                             editor.apply();
                             i.putExtra("id",email.toString().replace("@","").toString().replace(".",""));
                             startActivity(i);
