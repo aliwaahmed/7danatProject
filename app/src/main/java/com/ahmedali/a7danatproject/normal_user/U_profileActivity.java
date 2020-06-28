@@ -235,7 +235,7 @@ public class U_profileActivity extends AppCompatActivity {
                             .placeholder(R.drawable.ic_launcher_background).into(mDisplayImage, new Callback() {
                         @Override
                         public void onSuccess() {
-
+//
                         }
 
                         @Override
