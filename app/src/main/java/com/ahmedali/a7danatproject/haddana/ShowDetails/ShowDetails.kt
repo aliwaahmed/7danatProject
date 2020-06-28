@@ -55,12 +55,12 @@ class ShowDetails : AppCompatActivity() {
 
                 toggleButton.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
                     if (!isChecked) {
-                        val myRef1= myRef.child(name.toString()).child(intent.getStringExtra("post_id")).child("enable")
+                        val myRef1= myRef.child(intent.getStringExtra("post_id")).child("enable")
                         myRef1.setValue("true")
 
                         // The toggle is enabled
                     } else {
-                        val myRef1= myRef.child(name.toString()).child(intent.getStringExtra("post_id")).child("enable")
+                        val myRef1= myRef.child(intent.getStringExtra("post_id")).child("enable")
 
                         myRef1.setValue("false")
                         // The toggle is disabled
