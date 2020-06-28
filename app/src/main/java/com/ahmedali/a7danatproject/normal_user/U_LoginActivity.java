@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -95,7 +96,7 @@ public class U_LoginActivity extends AppCompatActivity {
 
     }
 
-    private void loginUser(String email, String pass) {
+    private void loginUser(final String email, String pass) {
         mAuth.signInWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -107,6 +108,10 @@ public class U_LoginActivity extends AppCompatActivity {
                             LoginProgress.dismiss();
                             Intent i = new Intent(U_LoginActivity.this, U_HomeActivity.class);
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
+                            editor.putString("id", email.toString().replace("@","").toString().replace(".",""));
+                            editor.apply();
+                            i.putExtra("id",email.toString().replace("@","").toString().replace(".",""));
                             startActivity(i);
                             finish();
                             FirebaseUser user = mAuth.getCurrentUser();

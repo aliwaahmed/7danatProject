@@ -106,9 +106,9 @@ public class U_profileActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        String info_name = dataSnapshot.child("u_name").getValue().toString();
-                        String info_phone = dataSnapshot.child("u_phone").getValue().toString();
-                        String info_add = dataSnapshot.child("u_address").getValue().toString();
+                        String info_name = dataSnapshot.child("h_name").getValue().toString();
+                        String info_phone = dataSnapshot.child("h_phone").getValue().toString();
+                        String info_add = dataSnapshot.child("h_address").getValue().toString();
 
                         Dname.setText(info_name);
                         Dphone.setText(info_phone);
@@ -135,7 +135,7 @@ public class U_profileActivity extends AppCompatActivity {
                         String DoctorAddress = Daddress.getText().toString();
                         String DoctorPhone = Dphone.getText().toString();
 
-                        mUserDatabase.child("u_name").setValue(DoctorName).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        mUserDatabase.child("h_name").setValue(DoctorName).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
 
@@ -153,7 +153,7 @@ public class U_profileActivity extends AppCompatActivity {
                             }
                         });
 
-                        mUserDatabase.child("u_phone").setValue(DoctorPhone).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        mUserDatabase.child("h_phone").setValue(DoctorPhone).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
 
@@ -170,7 +170,7 @@ public class U_profileActivity extends AppCompatActivity {
                             }
                         });
 
-                        mUserDatabase.child("u_address").setValue(DoctorAddress).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        mUserDatabase.child("h_address").setValue(DoctorAddress).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
 

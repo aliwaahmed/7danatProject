@@ -1,8 +1,11 @@
 package com.ahmedali.a7danatproject.normal_user
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
@@ -23,7 +26,8 @@ class U_HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_u__home)
 
-
+        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar2) as androidx.appcompat.widget.Toolbar
+        setSupportActionBar(toolbar)
         // Write a message to the database
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("adminposts").ref
@@ -91,7 +95,23 @@ class U_HomeActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id: Int = item.getItemId()
+        return when (id) {
+            R.id.profile -> {
+                val i = Intent(this, U_profileActivity::class.java)
+                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(i)
+                true
+            }
+            R.id.logout -> {
+                Toast.makeText(applicationContext, "logout", Toast.LENGTH_LONG).show()
+                true
+            }
 
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
 
 }
