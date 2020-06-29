@@ -13,7 +13,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/mainColor">
+        android:background="@color/colorPrimary">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,7 +24,7 @@
                 android:layout_height="match_parent"
                 android:text="Register"
                 android:textSize="16dp"
-                android:textColor="#fff" />
+                android:textColor="#000" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                     android:id="@+id/back_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#fff"
+                    android:backgroundTint="#000"
                     android:background="@drawable/ic_baseline_keyboard_arrow_right_24"/>
 
             </LinearLayout>
@@ -181,7 +181,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <Button
             android:id="@+id/register_btn"
             android:layout_width="wrap_content"
@@ -191,12 +190,13 @@
             android:text="Create Account"
             android:textAllCaps="false"
             android:backgroundTint="@color/mainColor"
-            android:textColor="#fff"
+            android:textColor="#000"
             android:textSize="14dp"
             android:textStyle="bold" />
 
-
     </LinearLayout>
+
+
 
     </ScrollView>
 

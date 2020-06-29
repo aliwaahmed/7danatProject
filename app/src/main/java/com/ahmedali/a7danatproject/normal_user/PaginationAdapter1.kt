@@ -31,7 +31,7 @@ class PaginationAdapter1(var activity: U_HomeActivity, var options: DatabasePagi
 
             Glide.with(context).load(userData.img1).into(holder.itemView.imageView8);
             holder.itemView.textView3.setText(userData.details)
-            holder.itemView.textView4.visibility=View.GONE
+          //  holder.itemView.textView4.visibility=View.GONE
 
 
             holder.itemView.location.setText(userData.adresse.toString())

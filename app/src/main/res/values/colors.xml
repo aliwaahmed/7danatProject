@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#607d8b</color>
-    <color name="colorPrimaryDark">#34515e</color>
-    <color name="colorAccent">#34515e</color>
+    <color name="colorPrimary">#E36868</color>
+    <color name="colorPrimaryDark">#7BBFE8</color>
+    <color name="colorAccent">#E36868</color>
 
 
-    <color name="mainColor">#607d8b</color>
+    <color name="mainColor">#7BBFE8</color>
+    <color name="gradColor">#B47BBFE8</color>
 
+
+<!--    <color name="colorPrimary">#607d8b</color>-->
+<!--    <color name="colorPrimaryDark">#34515e</color>-->
+<!--    <color name="colorAccent">#34515e</color>-->
+
+
+<!--    <color name="mainColor">#607d8b</color>-->
+<!--    <color name="gradColor">#B4607D8B</color>-->
 </resources>

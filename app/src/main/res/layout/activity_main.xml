@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:layout_gravity="center"
-    android:background="@drawable/gradiant"
     android:gravity="center"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -14,6 +13,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/_hospital"
         android:layout_width="100dp"
+        app:cardBackgroundColor="@color/colorPrimary"
         android:layout_height="100dp"
         android:layout_marginRight="20dp"
         android:elevation="10dp"
@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Incubation"
-                android:textColor="#3289FF"
+                android:textColor="#fff"
                 android:textStyle="bold"
                 android:layout_gravity="center"
                 android:gravity="center"/>
@@ -50,6 +50,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:elevation="10dp"
+        app:cardBackgroundColor="@color/colorPrimary"
         app:cardCornerRadius="10dp">
 
         <LinearLayout
@@ -67,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Child"
-                android:textColor="#3289FF"
+                android:textColor="#fff"
                 android:textStyle="bold"
                 android:layout_gravity="center"
                 android:gravity="center"/>
