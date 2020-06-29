@@ -122,17 +122,15 @@ public class H_RegisterActivity extends AppCompatActivity {
                             FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
                             String uid = current_user.getUid();
 
-                            mDatabase = FirebaseDatabase.getInstance().getReference().child("h_Users")
-                                    .child(String.valueOf(email.replace("@",""))
-                                            .replace(".",""));
+                            mDatabase = FirebaseDatabase.getInstance().getReference().child("hd_Users").child(uid);
 
                             //adding data to firebase database (Realtime-database)
                             HashMap<String , String> userMap = new HashMap<>();
-                            userMap.put("h_email", email);
-                            userMap.put("h_name", getcha_name);
-                            userMap.put("h_phone",getphone);
-                            userMap.put("h_address",getaddress);
-                            userMap.put("h_man_name", getman_name);
+                            userMap.put("hd_email", email);
+                            userMap.put("hd_name", getcha_name);
+                            userMap.put("hd_phone",getphone);
+                            userMap.put("hd_address",getaddress);
+                            userMap.put("hd_man_name", getman_name);
                             userMap.put("image","");
                             userMap.put("thumb_image","");
 

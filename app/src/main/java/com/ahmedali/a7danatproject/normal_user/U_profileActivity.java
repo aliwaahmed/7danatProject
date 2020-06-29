@@ -236,7 +236,7 @@ public class U_profileActivity extends AppCompatActivity {
         SharedPreferences  sharedPreferences =getSharedPreferences("login",MODE_PRIVATE);
         String name = sharedPreferences.getString("id", "No name defined") ;//"No name defined" is the default value.
 
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("h_Users").child(name);
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("h_Users").child(current_uid);
 
         mUserDatabase.addValueEventListener(new ValueEventListener() {
             @Override

@@ -61,6 +61,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
             >
@@ -68,6 +69,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/name"
                 android:layout_width="match_parent"
+                android:drawableLeft="@drawable/ic_baseline_account_circle_24"
                 android:layout_height="match_parent"
                 android:hint="name"
                 />
@@ -86,6 +88,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/address"
                 android:layout_width="match_parent"
+                android:drawableLeft="@drawable/ic_baseline_location_on_24"
                 android:layout_height="match_parent"
                 android:hint="Address"
                 />
@@ -104,6 +107,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/owned"
                 android:layout_width="match_parent"
+                android:drawableLeft="@drawable/ic_baseline_emoji_people_24"
                 android:layout_height="match_parent"
                 android:hint="Owned By"
                 />
@@ -121,6 +125,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/phone"
                 android:layout_width="match_parent"
+                android:drawableLeft="@drawable/ic_baseline_phone_iphone_24"
                 android:layout_height="match_parent"
                 android:hint="Phone number"
                 />
@@ -140,6 +145,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
+                android:drawableLeft="@drawable/ic_baseline_email_24"
                 android:layout_height="match_parent"
                 android:hint="email"
                 />

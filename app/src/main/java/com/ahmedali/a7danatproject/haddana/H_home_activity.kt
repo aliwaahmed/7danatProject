@@ -91,7 +91,7 @@ class H_home_activity : AppCompatActivity() {
         val id: Int = item.getItemId()
         return when (id) {
             R.id.profile -> {
-                val i = Intent(this, U_profileActivity::class.java)
+                val i = Intent(this, H_profileActivity::class.java)
                 i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(i)
                 true

@@ -102,9 +102,9 @@ public class H_profileActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        String info_name = dataSnapshot.child("h_name").getValue().toString();
-                        String info_phone = dataSnapshot.child("h_phone").getValue().toString();
-                        String info_add = dataSnapshot.child("h_address").getValue().toString();
+                        String info_name = dataSnapshot.child("hd_name").getValue().toString();
+                        String info_phone = dataSnapshot.child("hd_phone").getValue().toString();
+                        String info_add = dataSnapshot.child("hd_address").getValue().toString();
 
                         Dname.setText(info_name);
                         Dphone.setText(info_phone);
@@ -210,15 +210,15 @@ public class H_profileActivity extends AppCompatActivity {
 
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
         String current_uid = mCurrentUser.getUid();
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("h_Users").child(current_uid);
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("hd_Users").child(current_uid);
 
         mUserDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                String name = dataSnapshot.child("h_name").getValue().toString();
-                String phone = dataSnapshot.child("h_phone").getValue().toString();
-                String Iaddress = dataSnapshot.child("h_address").getValue().toString();
+                String name = dataSnapshot.child("hd_name").getValue().toString();
+                String phone = dataSnapshot.child("hd_phone").getValue().toString();
+                String Iaddress = dataSnapshot.child("hd_address").getValue().toString();
                 final String image = dataSnapshot.child("image").getValue().toString();
                 String thumb_image = dataSnapshot.child("thumb_image").getValue().toString();
 
@@ -227,7 +227,8 @@ public class H_profileActivity extends AppCompatActivity {
                 address.setText(Iaddress);
 
                 //
-                if (!image.equals("default")) {
+                if (!image.equals("")) {
+
                     Picasso.with(H_profileActivity.this).load(image).networkPolicy(NetworkPolicy.OFFLINE)
                             .placeholder(R.drawable.ic_launcher_background).into(mDisplayImage, new Callback() {
                         @Override

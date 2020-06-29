@@ -6,27 +6,43 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:background="@android:color/darker_gray"
     android:gravity="center"
     android:padding="5dp"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        app:cardCornerRadius="10dp"
-        app:cardBackgroundColor="@android:color/transparent"
-        android:elevation="10dp"
-        android:paddingBottom="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_height="350dp">
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+
+        android:backgroundTint="@color/colorPrimaryDark"
+        app:cardCornerRadius="100dp">
+
         <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:background="@drawable/baby1"
-            android:backgroundTint="@color/colorAccent"
-            android:layout_height="match_parent"></ImageView>
+            android:layout_gravity="right"
+            android:backgroundTint="#fff"
+            android:layout_height="100dp"/>
+
 
     </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Baby Care"
+        android:textSize="25dp"
+        android:layout_marginBottom="50dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold" />
+
+
+
+
+
     <LinearLayout
 
         android:layout_width="match_parent"
@@ -55,7 +71,7 @@
                     android:layout_height="70dp"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:src="@drawable/ic_baseline_apartment_24" />
+                    android:src="@drawable/ic_baseline_local_hospital_24" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -90,14 +106,14 @@
                     android:layout_height="70dp"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:src="@drawable/ic_baseline_child_care_24" />
+                    android:src="@drawable/ic_baseline_supervised_user_circle_24" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Child"
+                    android:text="User"
                     android:textColor="#fff"
                     android:textStyle="bold" />
 
