@@ -33,9 +33,9 @@ public class U_RegisterActivity extends AppCompatActivity {
 
 
     //vars
-    TextInputEditText name , email , address , pass , phone;
-    Button register ;
-    ImageView back ;
+    TextInputEditText name, email, address, pass, phone;
+    Button register;
+    ImageView back;
 
     //firebase vars
     private ProgressDialog mProgress;
@@ -58,7 +58,6 @@ public class U_RegisterActivity extends AppCompatActivity {
         back = findViewById(R.id.back_btn);
 
 
-
         //dialog display
         mProgress = new ProgressDialog(this);
 
@@ -69,7 +68,7 @@ public class U_RegisterActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(U_RegisterActivity.this , U_HomeActivity.class);
+                Intent i = new Intent(U_RegisterActivity.this, U_HomeActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
             }
@@ -88,12 +87,12 @@ public class U_RegisterActivity extends AppCompatActivity {
 
 
                 //check if vars are empty ..
-                if (!TextUtils.isEmpty(getemail) || !TextUtils.isEmpty(getpassword)){
+                if (!TextUtils.isEmpty(getemail) || !TextUtils.isEmpty(getpassword)) {
                     mProgress.setTitle("Registering User");
                     mProgress.setMessage("Wait while we create your account");
                     mProgress.setCanceledOnTouchOutside(false);
                     mProgress.show();
-                    callsignup(getemail, getpassword, getcha_name , getphone , getaddress );
+                    callsignup(getemail, getpassword, getcha_name, getphone, getaddress);
                 }
 
             }
@@ -101,19 +100,19 @@ public class U_RegisterActivity extends AppCompatActivity {
     }
 
     //add data to firebase database & authentication .
-    private void callsignup(final String email,final  String password, final String getcha_name,
+    private void callsignup(final String email, final String password, final String getcha_name,
                             final String getphone, final String getaddress) {
 
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>(){
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         //testing line
-                        Log.d("Testing","Signup successful" + task.isSuccessful());
+                        Log.d("Testing", "Signup successful" + task.isSuccessful());
 
                         //check if process not successful
-                        if (!task.isSuccessful()){
+                        if (!task.isSuccessful()) {
                             Toast.makeText(U_RegisterActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             mProgress.dismiss();
@@ -122,32 +121,31 @@ public class U_RegisterActivity extends AppCompatActivity {
                         else {
 
                             FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
-                         //   String uid = current_user.getUid();
-
+                            //   String uid = current_user.getUid();
 
 
                             mDatabase = FirebaseDatabase.getInstance().getReference().child("h_Users")
-                                    .child(String.valueOf(email.replace("@",""))
-                                            .replace(".",""));
+                                    .child(String.valueOf(email.replace("@", ""))
+                                            .replace(".", ""));
                             //adding data to firebase database (Realtime-database)
-                            HashMap<String , String> userMap = new HashMap<>();
+                            HashMap<String, String> userMap = new HashMap<>();
                             userMap.put("h_email", email);
                             userMap.put("h_name", getcha_name);
-                            userMap.put("h_phone",getphone);
-                            userMap.put("h_address",getaddress);
-                            userMap.put("image","");
-                            userMap.put("thumb_image","");
+                            userMap.put("h_phone", getphone);
+                            userMap.put("h_address", getaddress);
+                            userMap.put("image", "");
+                            userMap.put("thumb_image", "");
 
                             mDatabase.setValue(userMap);
 
                         }
                         //if completely successful go to pharmacy home activity
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             userProfile();
                             Toast.makeText(U_RegisterActivity.this, "Created Account", Toast.LENGTH_SHORT).show();
                             Log.d("TESTING", "Created Account");
                             mProgress.hide();
-                            Intent i = new Intent(U_RegisterActivity.this , U_HomeActivity.class);
+                            Intent i = new Intent(U_RegisterActivity.this, U_HomeActivity.class);
                             startActivity(i);
                         }
                     }
@@ -156,7 +154,7 @@ public class U_RegisterActivity extends AppCompatActivity {
 
     private void userProfile() {
         FirebaseUser user = mAuth.getCurrentUser();
-        if (user!=null){
+        if (user != null) {
             UserProfileChangeRequest profileupdates = new UserProfileChangeRequest.Builder()
                     .setDisplayName(name.getText().toString().trim()).build();
 
@@ -164,8 +162,8 @@ public class U_RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
 
-                    if (task.isSuccessful()){
-                        Log.d("TESTING","User profile updated.");
+                    if (task.isSuccessful()) {
+                        Log.d("TESTING", "User profile updated.");
                     }
                 }
             });
