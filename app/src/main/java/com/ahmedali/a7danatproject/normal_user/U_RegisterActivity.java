@@ -68,7 +68,7 @@ public class U_RegisterActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(U_RegisterActivity.this, U_LoginActivity.class);
+                Intent i = new Intent(U_RegisterActivity.this, U_HomeActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
             }
@@ -124,7 +124,9 @@ public class U_RegisterActivity extends AppCompatActivity {
                             //   String uid = current_user.getUid();
 
 
-                            mDatabase = FirebaseDatabase.getInstance().getReference().child("h_Users").child(current_user.getUid());
+                            mDatabase = FirebaseDatabase.getInstance().getReference().child("h_Users")
+                                    .child(String.valueOf(email.replace("@", ""))
+                                            .replace(".", ""));
                             //adding data to firebase database (Realtime-database)
                             HashMap<String, String> userMap = new HashMap<>();
                             userMap.put("h_email", email);

@@ -7,7 +7,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ahmedali.a7danatproject.MainActivity;
 import com.ahmedali.a7danatproject.R;
 import com.ahmedali.a7danatproject.normal_user.U_profileActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -79,10 +82,28 @@ public class H_profileActivity extends AppCompatActivity {
         change_image = findViewById(R.id.changeImage);
         editinfo = findViewById(R.id.editinfo);
 
+        findViewById(R.id.logout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SharedPreferences.Editor editor = getApplicationContext()
+                        .getSharedPreferences("login", Context.MODE_PRIVATE).edit();
+                editor.putString("id", "-1");
+                editor.putString("id_type", "-1");
+
+                editor.apply();
+
+                Intent intent =new Intent(getApplicationContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
 
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
-        String current_id = mCurrentUser.getUid();
-        mPatientDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(current_id);
+        SharedPreferences sharedPreferences =getSharedPreferences("login",MODE_PRIVATE);
+        String name = sharedPreferences.getString("id", "No name defined") ;//"No name defined" is the default value.
+
+        mPatientDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(name);
 
         editinfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,9 +123,9 @@ public class H_profileActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        String info_name = dataSnapshot.child("hd_name").getValue().toString();
-                        String info_phone = dataSnapshot.child("hd_phone").getValue().toString();
-                        String info_add = dataSnapshot.child("hd_address").getValue().toString();
+                        String info_name = dataSnapshot.child("h_name").getValue().toString();
+                        String info_phone = dataSnapshot.child("h_phone").getValue().toString();
+                        String info_add = dataSnapshot.child("h_address").getValue().toString();
 
                         Dname.setText(info_name);
                         Dphone.setText(info_phone);
@@ -196,11 +217,6 @@ public class H_profileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent galleryIntent = new Intent();
-                galleryIntent.setType("image/*");
-                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-
-                startActivityForResult(Intent.createChooser(galleryIntent, "SELECT IMAGE"), GALLERY_PICK);
 
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
@@ -208,17 +224,16 @@ public class H_profileActivity extends AppCompatActivity {
             }
         });
 
-        mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
-        String current_uid = mCurrentUser.getUid();
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("hd_Users").child(current_uid);
+
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("h_Users").child(name);
 
         mUserDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                String name = dataSnapshot.child("hd_name").getValue().toString();
-                String phone = dataSnapshot.child("hd_phone").getValue().toString();
-                String Iaddress = dataSnapshot.child("hd_address").getValue().toString();
+                String name = dataSnapshot.child("h_name").getValue().toString();
+                String phone = dataSnapshot.child("h_phone").getValue().toString();
+                String Iaddress = dataSnapshot.child("h_address").getValue().toString();
                 final String image = dataSnapshot.child("image").getValue().toString();
                 String thumb_image = dataSnapshot.child("thumb_image").getValue().toString();
 
@@ -228,7 +243,6 @@ public class H_profileActivity extends AppCompatActivity {
 
                 //
                 if (!image.equals("")) {
-
                     Picasso.with(H_profileActivity.this).load(image).networkPolicy(NetworkPolicy.OFFLINE)
                             .placeholder(R.drawable.ic_launcher_background).into(mDisplayImage, new Callback() {
                         @Override
@@ -283,10 +297,6 @@ public class H_profileActivity extends AppCompatActivity {
                 String current_user_id = mCurrentUser.getUid();
                 Uri imageUri = data.getData();
 
-                CropImage.activity(imageUri)
-                        .setAspectRatio(1, 1)
-                        .setMinCropWindowSize(500, 500)
-                        .start(this);
                 // uploading photo to page all users
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 //  imageUri.compress(Bitmap.CompressFormat.JPEG, 100, baos);

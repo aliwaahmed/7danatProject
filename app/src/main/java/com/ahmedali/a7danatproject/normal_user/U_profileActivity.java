@@ -101,11 +101,12 @@ public class U_profileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
         String current_id = mCurrentUser.getUid();
-        mPatientDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(current_id);
+        SharedPreferences  sharedPreferences =getSharedPreferences("login",MODE_PRIVATE);
+        String name = sharedPreferences.getString("id", "No name defined") ;//"No name defined" is the default value.
+
+        mPatientDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(name);
 
         editinfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -233,10 +234,10 @@ public class U_profileActivity extends AppCompatActivity {
 
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
         String current_uid = mCurrentUser.getUid();
-        SharedPreferences  sharedPreferences =getSharedPreferences("login",MODE_PRIVATE);
-        String name = sharedPreferences.getString("id", "No name defined") ;//"No name defined" is the default value.
+        SharedPreferences  sharedPreferences1 =getSharedPreferences("login",MODE_PRIVATE);
+        String name1= sharedPreferences.getString("id", "No name defined") ;//"No name defined" is the default value.
 
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("h_Users").child(current_uid);
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("h_Users").child(name);
 
         mUserDatabase.addValueEventListener(new ValueEventListener() {
             @Override

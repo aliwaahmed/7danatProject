@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.ahmedali.a7danatproject.R
 import com.ahmedali.a7danatproject.haddana.adapter.PaginationAdapter
 import com.ahmedali.a7danatproject.haddana.model.admin_post_mode
@@ -46,6 +47,17 @@ class H_home_activity : AppCompatActivity() {
 
         firebaseDatabase = FirebaseDatabase.getInstance()
         online_user = firebaseDatabase!!.getReference("adminposts");
+
+
+        swip.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
+            LoadOnlineUsers()
+
+            if(swip.isRefreshing)
+            {
+                swip.isRefreshing=false
+            }
+
+        })
         LoadOnlineUsers()
 
     }
