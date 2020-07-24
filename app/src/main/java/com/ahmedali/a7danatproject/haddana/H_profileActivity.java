@@ -224,6 +224,10 @@ public class H_profileActivity extends AppCompatActivity {
             }
         });
 
+        mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String current_uid = mCurrentUser.getUid();
+        SharedPreferences  sharedPreferences1 =getSharedPreferences("login",MODE_PRIVATE);
+        String name1= sharedPreferences.getString("id", "No name defined") ;//"No name defined" is the default value.
 
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child("h_Users").child(name);
 

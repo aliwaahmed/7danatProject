@@ -124,7 +124,7 @@ public class U_RegisterActivity extends AppCompatActivity {
                             //   String uid = current_user.getUid();
 
 
-                            mDatabase = FirebaseDatabase.getInstance().getReference().child("h_Users")
+                            mDatabase = FirebaseDatabase.getInstance().getReference().child("normal_Users")
                                     .child(String.valueOf(email.replace("@", ""))
                                             .replace(".", ""));
                             //adding data to firebase database (Realtime-database)
